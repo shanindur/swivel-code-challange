@@ -12,8 +12,11 @@ export default {
 	white: '#FFFFFF',
 	back: '#000000',
 
-	danger: '#FF5630',
+	danger: '#bb0000',
 	warning: '#FFAB00',
 	success: '#36B37E',
 	info: '#00B8D9',
+
+	grey: '#808080',
+	lightGrey: '#f4f4f4',
 };
