@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 
 
-export const useNetInfo = () => {
+export const UseNetInfo = () => {
 	const [ netInfo, setNetInfo ] = useState({isConnected: true});
 
 
