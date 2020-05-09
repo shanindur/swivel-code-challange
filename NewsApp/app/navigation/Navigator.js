@@ -9,7 +9,7 @@
  */
 import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigator from './tabNavigator';
+import TabNavigator from './TabNavigator';
 import { SplashScreen } from '../screens';
 import { useStore } from '../store';
 
