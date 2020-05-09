@@ -12,7 +12,7 @@ import { StatusBar } from 'react-native';
 
 import { UseNetInfo } from './app/hooks/NetInfo';
 import {NoInternet} from './app/screens';
-import MainNavigator from './app/navigation/navigator';
+import MainNavigator from './app/navigation/Navigator';
 import { StoreProvider } from './app/store';
 import { Colors } from './app/util';
 
