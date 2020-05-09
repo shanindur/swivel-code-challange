@@ -1,4 +1,12 @@
 /* eslint-disable prettier/prettier */
+/**
+ * Global News
+ *
+ * Storage Service
+ *
+ * @author       Shanindu Rajapaksha
+ * @version      0.0.1 2020-May-10
+ */
 import AsyncStorage from '@react-native-community/async-storage';
 
 const storeData = async (key, data) => {
