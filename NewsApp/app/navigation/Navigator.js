@@ -10,6 +10,7 @@ import React, {useState, useEffect} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import TabNavigator from './TabNavigator';
 import { SplashScreen } from '../screens';
+import {StorageService} from '../services'
 import { useStore } from '../store';
 
 
@@ -19,9 +20,11 @@ const Navigator = () => {
 	const [ isConnected, setIsConnected ] = useState(false); // TODO: Use of `isConnected`??!!
 
 
-	const appStart = () =>
+	const appStart = async() =>
 	{
-		dispatch({type: 'appStart', network: isConnected});
+		const user  = await StorageService.getData('USER');
+		console.log(user)
+		dispatch({type: 'appStart', network: isConnected, user: user});
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 5000);
