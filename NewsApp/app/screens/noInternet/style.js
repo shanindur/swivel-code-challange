@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /**
  *Global News
  *
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
 		display: 'flex',
 		flexDirection: 'column',
 		alignItems: 'center',
-		justifyContent: 'flex-end',
+		justifyContent: 'flex-end'
 	},
 
 	container: {
@@ -26,18 +25,18 @@ const styles = StyleSheet.create({
 		height: '40%',
 		alignItems: 'center',
 		justifyContent: 'center',
-		backgroundColor: Colors.lightGrey,
+		backgroundColor: Colors.lightGrey
 	},
 
 	titleText: {
 		fontSize: 5 + Fonts.extraLarge,
 		color: Colors.danger,
-		fontWeight: 'bold',
+		fontWeight: 'bold'
 	},
 
 	bodyText: {
 		fontSize: Fonts.medium,
-		color: Colors.danger,
+		color: Colors.danger
 	}
 });
 

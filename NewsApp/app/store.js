@@ -1,11 +1,18 @@
-/* eslint-disable prettier/prettier */
+/**
+ * Global News
+ *
+ * Store
+ *
+ * @author       Shanindu Rajapaksha
+ * @version      0.0.1 2020-May-10
+ */
 import React, {createContext, useContext, useReducer} from 'react';
 
 const StoreContext = createContext();
 const initialState = {
 	isNetworkConnected: false,
 	isSignedIn: false,
-	user: null,
+	user: null
 };
 
 const reducer = (state, action) => {
@@ -14,29 +21,29 @@ const reducer = (state, action) => {
 			return {
 				...state,
 				isSignedIn: action.isSignedIn,
-				user: action.user,
+				user: action.user
 			};
 		case 'appStart':
 			return {
 				...state,
-				isNetworkConnected: action.network,
+				isNetworkConnected: action.network
 			};
 		case 'signingIn':
 			return {
 				...state,
 				isSignedIn: action.isSignedIn,
-				user: action.user,
+				user: action.user
 			};
 		case 'signOut':
 			return {
 				...state,
 				isSignedIn: false,
-				user: null,
+				user: null
 			};
 		case 'updateUser':
 			return {
 				...state,
-				user: action.user,
+				user: action.user
 			};
 		default:
 			throw new Error(`Unhandled action type: ${action.type}`);

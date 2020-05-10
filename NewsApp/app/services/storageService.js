@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /**
  * Global News
  *
@@ -21,7 +20,7 @@ const getData = async (key) => {
 	try {
 		const value = await AsyncStorage.getItem(key);
 
-		if (value !== null) {
+		if (null !== value) {
 			return JSON.parse(value);
 		}
 	} catch (e) {
@@ -41,5 +40,5 @@ const removeStorage = async (key) => {
 export default {
 	storeData,
 	getData,
-	removeStorage,
+	removeStorage
 };

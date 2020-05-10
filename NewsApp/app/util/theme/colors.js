@@ -1,4 +1,11 @@
-/* eslint-disable prettier/prettier */
+/**
+ * Global News
+ *
+ * Colors
+ *
+ * @author       Shanindu Rajapaksha
+ * @version      0.0.1 2020-May-10
+ */
 export default {
 	primaryColor: '#7b1fa2',
 	primaryLightColor: '#ae52d4',
@@ -10,7 +17,7 @@ export default {
 	shadowColor: '#B9B9B9',
 
 	white: '#FFFFFF',
-	back: '#000000',
+	black: '#000000',
 
 	danger: '#bb0000',
 	warning: '#FFAB00',
@@ -18,5 +25,5 @@ export default {
 	info: '#00B8D9',
 
 	grey: '#808080',
-	lightGrey: '#f4f4f4',
+	lightGrey: '#f4f4f4'
 };

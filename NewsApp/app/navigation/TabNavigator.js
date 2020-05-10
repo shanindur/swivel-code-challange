@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /**
  * Global News
  *
@@ -23,14 +22,14 @@ const TabStackNavigator = props => {
 		<TabStack.Navigator
 			screenOptions={{
 				headerStyle: {
-					elevation: 0,
-				},
+					elevation: 0
+				}
 			}}>
 			<TabStack.Screen
 				name="posts"
 				component={TabNavigator}
 				options={{
-					headerTitle: () => <HeaderLogo />,
+					headerTitle: () => <HeaderLogo />
 				}}
 			/>
 		</TabStack.Navigator>
@@ -72,22 +71,22 @@ const TabNavigator = props => {
 					),
 				}}
 			/>
-				<Tab.Screen
+			<Tab.Screen
 				name="news"
 				component={NewsStack}
 				options={{
 					tabBarIcon: ({focused, color}) => (
 						<Icon name="newspaper" size={25} color={color} />
-					),
+					)
 				}}
 			/>
-				<Tab.Screen
+			<Tab.Screen
 				name="profile"
 				component={ProfileStack}
 				options={{
 					tabBarIcon: ({focused, color}) => (
 						<Icon name="user" size={25} color={color} />
-					),
+					)
 				}}
 			/>
 		</Tab.Navigator>
@@ -99,17 +98,17 @@ export default TabStackNavigator;
 const styles = StyleSheet.create({
 	headerLogo: {
 		width: 30,
-		height: 30,
+		height: 30
 	},
 	logoView: {
 		flexDirection: 'row',
-		alignItems: 'center',
+		alignItems: 'center'
 	},
 	logoText: {
 		paddingLeft: 8,
 		fontSize: Fonts.xxLarge,
 		color: Colors.primaryColor,
-		fontWeight: 'bold',
+		fontWeight: 'bold'
 	},
 	tabNavigatorStyle: {
 		shadowColor: Colors.primaryBlack,
@@ -118,16 +117,16 @@ const styles = StyleSheet.create({
 		shadowOpacity: 1,
 		elevation: 5,
 		borderBottomColor: 'transparent',
-		height: 50,
+		height: 50
 	},
 	tabIndicatorStyle: {
-		backgroundColor: 'transparent',
+		backgroundColor: 'transparent'
 	},
 	tabIconStyle: {
 		height: 50,
 		width: 50,
 		justifyContent: 'space-between',
-		alignItems: 'center',
-	},
+		alignItems: 'center'
+	}
 });
 
