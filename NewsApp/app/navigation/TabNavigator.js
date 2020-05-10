@@ -51,14 +51,14 @@ const TabNavigator = props => {
 			swipeEnabled={false}
 			tabBarOptions={{
 				style: styles.tabNavigatorStyle,
-				activeBackgroundColor: Colors.primaryWhite,
-				inactiveBackgroundColor: Colors.primaryWhite,
+				activeBackgroundColor: Colors.white,
+				inactiveBackgroundColor: Colors.white,
 				inactiveTintColor: Colors.primaryIcon,
-				activeTintColor: Colors.primaryBlue,
+				activeTintColor: Colors.primaryColor,
 				showIcon: true,
 				showLabel: false,
 				indicatorStyle: styles.tabIndicatorStyle,
-				iconStyle: styles.tabIconStyle,
+				iconStyle: styles.tabIconStyle
 			}}
 			lazy={true}
 		>
@@ -68,7 +68,7 @@ const TabNavigator = props => {
 				options={{
 					tabBarIcon: ({focused, color}) => (
 						<Icon name="home" size={25} color={color} />
-					),
+					)
 				}}
 			/>
 			<Tab.Screen
