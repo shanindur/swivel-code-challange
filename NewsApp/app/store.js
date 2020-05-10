@@ -11,34 +11,16 @@ import React, {createContext, useContext, useReducer} from 'react';
 const StoreContext = createContext();
 const initialState = {
 	isNetworkConnected: false,
-	isSignedIn: false,
 	user: null
 };
 
 const reducer = (state, action) => {
 	switch (action.type) {
-		case 'signedIn':
-			return {
-				...state,
-				isSignedIn: action.isSignedIn,
-				user: action.user
-			};
 		case 'appStart':
 			return {
 				...state,
-				isNetworkConnected: action.network
-			};
-		case 'signingIn':
-			return {
-				...state,
-				isSignedIn: action.isSignedIn,
+				isNetworkConnected: action.network,
 				user: action.user
-			};
-		case 'signOut':
-			return {
-				...state,
-				isSignedIn: false,
-				user: null
 			};
 		case 'updateUser':
 			return {
