@@ -6,7 +6,7 @@
  * @author       Shanindu Rajapaksha
  * @version      0.0.1 2020-May-10
  */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
 	SafeAreaView,
 	ScrollView,
@@ -16,14 +16,13 @@ import {
 	View,
 	Linking
 } from 'react-native';
-import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Colors } from '../../util';
+import { Colors, Fonts } from '../../util';
+import Moment from 'moment';
 
 
 const Detail = props => {
-	const isFocused = useIsFocused();
 
 	const { params: {newsItem :{
 		author,
@@ -35,11 +34,11 @@ const Detail = props => {
 		urlToImage
 	}}} = props.route;
 
-
-
-	useEffect(() => {
-		// fetchData();
-	}, [isFocused]);
+	const formatDate = (date) => {
+		const dt = date;
+		Moment.locale('en');
+		return Moment(dt).format('MMM DD, YYYY');
+	};
 
 	return (
 		<SafeAreaView style={styles.container}>
@@ -55,8 +54,8 @@ const Detail = props => {
 			<ScrollView>
 				<Text style={styles.description}>{description}</Text>
 				<View style={styles.authorView}>
-					<Text style={{width:'60%'}}>By {author}</Text>
-					<Text>{publishedAt}</Text>
+					<Text style={{width:'75%', fontSize:Fonts.xSmall, color: Colors.grey}}>By {author}</Text>
+					<Text style={{width:'25%', textAlign:'right', fontSize:Fonts.xSmall, color: Colors.grey}}>{formatDate(publishedAt)}</Text>
 				</View>
 				<Image
 					style={styles.itemImage}

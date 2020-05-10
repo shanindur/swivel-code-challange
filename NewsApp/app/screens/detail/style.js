@@ -30,12 +30,12 @@ const styles = StyleSheet.create({
 		fontSize: Fonts.small,
 		padding: 10,
 		fontWeight: 'bold',
-		textAlign:'center'
+		textAlign:'center',
+		color: Colors.grey
 	},
 	content: {
 		fontSize: Fonts.medium,
 		padding: 10,
-		fontWeight: 'bold',
 		textAlign: 'justify'
 	},
 	authorView:{
