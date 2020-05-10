@@ -22,20 +22,6 @@ import axios from 'axios';
 import Constants from '../../util/constants';
 import { Colors } from '../../util';
 
-const Item = ({ item }) => {
-	return (
-		<TouchableOpacity style={styles.item}>
-			<Image
-				style={styles.itemImage}
-				source={{
-					uri: item.urlToImage
-				}}
-			/>
-			<Text style={styles.itemTitle}>{item.title}</Text>
-		</TouchableOpacity>
-	);
-};
-
 const News = props => {
 	const isFocused = useIsFocused();
 	const [ fetchingData, setFetchingData ] = useState(true);
@@ -45,6 +31,20 @@ const News = props => {
 	const [ isAppleSelected, setIsAppleSelected ] = useState(false);
 	const [ isEarthquakeSelected, setIsEarthquakeSelected ] = useState(false);
 	const [ isAnimalSelected, setIsAnimalSelected ] = useState(false);
+
+	const Item = ({ item }) => {
+		return (
+			<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate('detail', { newsItem: item })}>
+				<Image
+					style={styles.itemImage}
+					source={{
+						uri: item.urlToImage
+					}}
+				/>
+				<Text style={styles.itemTitle}>{item.title}</Text>
+			</TouchableOpacity>
+		);
+	};
 
 	const onClickBitcoin = () => {
 		fetchData('bitcoin');
