@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import {
 	SafeAreaView,
+	ScrollView,
 	View,
 	Text,
 	TextInput
@@ -43,7 +44,6 @@ const Profile = props => {
 
 	const editProfilePicture = async () => {
 		ImagePicker.showImagePicker(options, (response) => {
-			console.log(response);
 			if (response.didCancel) {
 				// console.log('User cancelled image picker');
 			} else if (response.error) {
@@ -73,15 +73,11 @@ const Profile = props => {
 
 	const getUserData = async() => {
 		const { user } = state;
-		try {
+		if (user){
 			setFirstName(user.fname);
 			setLastName(user.lname);
 			setEmail(user.email);
 			setProImage(user.profile);
-
-		} catch (exception) {
-			Toast.showWithGravity(exception.error, Toast.LONG, Toast.BOTTOM);
-
 		}
 
 	};
@@ -93,21 +89,23 @@ const Profile = props => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>Profile</Text>
-			<View style={styles.photoView}>
-				<View style={styles.photoAvatar}>
-					<Avatar isEditable={true} clickOnEditProfile={() => editProfilePicture()} size={150} image={proImage}/>
+			<ScrollView>
+				<View style={styles.photoView}>
+					<View style={styles.photoAvatar}>
+						<Avatar isEditable={true} clickOnEditProfile={() => editProfilePicture()} size={150} image={proImage}/>
+					</View>
 				</View>
-			</View>
-			<View style={styles.detailView}>
-				<View style={styles.nameView}>
-					<TextInput onChangeText={(value) => setFirstName(value)} style={[styles.textInput,{textAlign:'right'}]} value={firstName}  placeholder="Enter First Name"/>
-					<TextInput onChangeText={(value) => setLastName(value)} style={[styles.textInput,{textAlign:'left'}]} value={lastName}  placeholder="Enter Last Name"/>
+				<View style={styles.detailView}>
+					<View style={styles.nameView}>
+						<TextInput onChangeText={(value) => setFirstName(value)} style={[styles.textInput,{textAlign:'right'}]} value={firstName}  placeholder="Enter First Name"/>
+						<TextInput onChangeText={(value) => setLastName(value)} style={[styles.textInput,{textAlign:'left'}]} value={lastName}  placeholder="Enter Last Name"/>
+					</View>
+					<TextInput onChangeText={(value) => setEmail(value)}  style={styles.textInput} value={email}  placeholder="Enter Email"/>
 				</View>
-				<TextInput onChangeText={(value) => setEmail(value)}  style={styles.textInput} value={email}  placeholder="Enter Email"/>
-			</View>
-			<View style={styles.buttonView}>
-				<SquareButton onPress={() => saveUser()} rounded={true} text={'Save'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
-			</View>
+				<View style={styles.buttonView}>
+					<SquareButton onPress={() => saveUser()} rounded={true} text={'Save'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
+				</View>
+			</ScrollView>
 		</SafeAreaView>
 	);
 
