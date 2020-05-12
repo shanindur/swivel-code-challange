@@ -9,3 +9,4 @@
 
 export {default as SquareButton} from './squareButton';
 export {default as Avatar} from './avatar';
+export {default as SearchBar} from './searchBar';
