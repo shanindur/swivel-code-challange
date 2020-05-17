@@ -60,6 +60,14 @@ const styles = StyleSheet.create({
 		fontSize: Fonts.large,
 		padding: 10,
 		fontWeight: 'bold'
+	},
+	emptyListView: {
+		height: 400,
+		justifyContent: 'center'
+	},
+	emptyText: {
+		textAlign: 'center',
+		color: Colors.primaryIcon
 	}
 });
 

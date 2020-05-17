@@ -20,7 +20,7 @@ import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
 import Constants from '../../util/constants';
-import {SearchBar} from '../../components';
+import {SearchBar, Chip} from '../../components';
 import { Colors } from '../../util';
 
 const News = props => {
@@ -67,7 +67,7 @@ const News = props => {
 		setIsAnimalSelected(false);
 	};
 
-	const onClickEarthquarke = () => {
+	const onClickEarthquake = () => {
 		fetchData('earthquake');
 
 		setIsBitcoinSelected(false);
@@ -90,7 +90,7 @@ const News = props => {
 		setData([]);
 		setFilteredData([]);
 		setFetchingData(true);
-		axios.get('https://newsapi.org/v2/everything', {
+		axios.get('https://news1api.org/v2/everything', {
 			params: {
 				q: source,
 				apiKey: Constants.API_KEY
@@ -129,18 +129,10 @@ const News = props => {
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>News</Text>
 			<View style={styles.chipContainer}>
-				<TouchableOpacity onPress={()=>onClickBitcoin()} style={[styles.chipView, {backgroundColor:isBitcoinSelected ? Colors.primaryColor : Colors.grey}]}>
-					<Text style={styles.chipText}>Bitcoin</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={()=>onClickApple()} style={[styles.chipView, {backgroundColor:isAppleSelected ? Colors.primaryColor : Colors.grey}]}>
-					<Text style={styles.chipText}>Apple</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={()=>onClickEarthquarke()} style={[styles.chipView, {backgroundColor:isEarthquakeSelected ? Colors.primaryColor : Colors.grey}]}>
-					<Text style={styles.chipText}>Earthquake</Text>
-				</TouchableOpacity>
-				<TouchableOpacity onPress={()=>onClickAnimal()} style={[styles.chipView, {backgroundColor:isAnimalSelected ? Colors.primaryColor : Colors.grey}]}>
-					<Text style={styles.chipText}>Animal</Text>
-				</TouchableOpacity>
+				<Chip onPress={()=>onClickBitcoin()} isBitcoinSelected={isBitcoinSelected} text={'Bitcoin'}/>
+				<Chip onPress={()=>onClickApple()} isBitcoinSelected={isAppleSelected} text={'Apple'}/>
+				<Chip onPress={()=>onClickEarthquake()} isBitcoinSelected={isEarthquakeSelected} text={'Earthquake'}/>
+				<Chip onPress={()=>onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
 			</View>
 			<SearchBar onTextChange={text => searchNews(text)}/>
 			{(fetchingData)
@@ -150,6 +142,11 @@ const News = props => {
 					data={isSearch ? filteredData : data}
 					renderItem={({ item }) => <Item item={item} />}
 					keyExtractor={item => item.id}
+					ListEmptyComponent={
+						<View style={styles.emptyListView}>
+							<Text style={styles.emptyText}>No Articles</Text>
+						</View>
+					}
 				/>
 			}
 		</SafeAreaView>
