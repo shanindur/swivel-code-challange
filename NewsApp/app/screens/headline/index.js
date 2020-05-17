@@ -4,23 +4,20 @@
  * Headline
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-17
  */
 import React, { useEffect, useState } from 'react';
 import {
 	SafeAreaView,
 	FlatList,
 	Text,
-	Image,
-	ActivityIndicator,
-	TouchableOpacity,
-	View
+	ActivityIndicator
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
 import Constants from '../../util/constants';
-import {SearchBar} from '../../components';
+import {SearchBar, Article, EmptyList} from '../../components';
 import { Colors } from '../../util';
 
 const Headline = props => {
@@ -30,23 +27,9 @@ const Headline = props => {
 	const [ filteredData, setFilteredData ] = useState([]);
 	const [ isSearch, setIsSearch ] = useState(false);
 
-	const Item = ({ item }) => {
-		return (
-			<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate('detail', { newsItem: item })}>
-				<Image
-					style={styles.itemImage}
-					source={{
-						uri: item.urlToImage
-					}}
-				/>
-				<Text style={styles.itemTitle}>{item.title}</Text>
-			</TouchableOpacity>
-		);
-	};
-
 	const fetchData = () => {
 		setFetchingData(true);
-		axios.get('https://new1sapi.org/v2/top-headlines', {
+		axios.get('https://newsapi.org/v2/top-headlines', {
 			params: {
 				sources: 'bbc-news',
 				apiKey: Constants.API_KEY
@@ -86,17 +69,13 @@ const Headline = props => {
 			<Text style={styles.title}>Headlines</Text>
 			<SearchBar onTextChange={text => searchHeadlines(text)}/>
 			{(fetchingData)
-				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={{ top: '38%' }} />
+				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={styles.activityIndicator} />
 				:
 				<FlatList
 					data={isSearch ? filteredData : headlines}
-					renderItem={({ item }) => <Item item={item} />}
+					renderItem={({ item }) => <Article item={item} navigation={props.navigation}/>}
 					keyExtractor={item => item.id}
-					ListEmptyComponent={
-						<View style={styles.emptyListView}>
-							<Text style={styles.emptyText}>No Articles</Text>
-						</View>
-					}
+					ListEmptyComponent={<EmptyList/>}
 				/>
 			}
 		</SafeAreaView>

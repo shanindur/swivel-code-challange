@@ -4,7 +4,7 @@
  * Headline -> style
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-17
  */
 import {StyleSheet} from 'react-native';
 import {Colors, Fonts} from '../../util';
@@ -22,25 +22,8 @@ const styles = StyleSheet.create({
 		paddingVertical: 5,
 		marginBottom: 5
 	},
-
 	title: {
 		fontSize: Fonts.xxLarge,
-		padding: 10,
-		fontWeight: 'bold'
-	},
-	item: {
-		alignItems: 'center',
-		backgroundColor: Colors.lightGrey,
-		padding: 5,
-		marginVertical: 3,
-		marginHorizontal: 10
-	},
-	itemImage:{
-		width:'100%',
-		height:180
-	},
-	itemTitle: {
-		fontSize: Fonts.large,
 		padding: 10,
 		fontWeight: 'bold'
 	},
@@ -51,6 +34,9 @@ const styles = StyleSheet.create({
 	emptyText: {
 		textAlign: 'center',
 		color: Colors.primaryIcon
+	},
+	activityIndicator:{
+		top: '38%'
 	}
 });
 
