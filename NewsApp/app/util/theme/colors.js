@@ -8,7 +8,7 @@
  */
 export default {
 	primaryColor: '#7b1fa2',
-	primaryLightColor: '#ae52d4',
+	primaryLightColor: '#A569BD',
 	primaryDarkColor: '#4a0072',
 	primaryTextColor: '#ffffff',
 
