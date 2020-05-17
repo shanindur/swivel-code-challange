@@ -4,7 +4,7 @@
  * No Internet Screen -> Style
  *
  * @author       Shanindu Rajapaksha
- * @version      0.1.0 2020-May-09
+ * @version      0.1.0 2020-May-17
  */
 import { StyleSheet } from 'react-native';
 import { Colors, Fonts } from '../../util';
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 	},
 
 	titleText: {
-		fontSize: 5 + Fonts.extraLarge,
+		fontSize: Fonts.xxLarge,
 		color: Colors.danger,
 		fontWeight: 'bold'
 	},
