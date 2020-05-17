@@ -20,12 +20,15 @@ import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
 import Constants from '../../util/constants';
+import {SearchBar} from '../../components';
 import { Colors } from '../../util';
 
 const News = props => {
 	const isFocused = useIsFocused();
 	const [ fetchingData, setFetchingData ] = useState(true);
 	const [ data, setData ] = useState([]);
+	const [ filteredData, setFilteredData ] = useState([]);
+	const [ isSearch, setIsSearch ] = useState(false);
 
 	const [ isBitcoinSelected, setIsBitcoinSelected ] = useState(false);
 	const [ isAppleSelected, setIsAppleSelected ] = useState(false);
@@ -83,6 +86,9 @@ const News = props => {
 	};
 
 	const fetchData = (source) => {
+		setIsSearch(false);
+		setData([]);
+		setFilteredData([]);
 		setFetchingData(true);
 		axios.get('https://newsapi.org/v2/everything', {
 			params: {
@@ -100,6 +106,19 @@ const News = props => {
 			.finally(() => {
 				setFetchingData(false);
 			});
+	};
+
+	const searchNews = (text) => {
+		if ('' === text){
+			setIsSearch(false);
+		} else {
+			setIsSearch(true);
+			setFilteredData([]);
+			let filteredNews = data.filter(item => {
+				return item.title.toLowerCase().includes(text.toLowerCase());
+			});
+			setFilteredData(filteredNews);
+		}
 	};
 
 	useEffect(() => {
@@ -123,11 +142,12 @@ const News = props => {
 					<Text style={styles.chipText}>Animal</Text>
 				</TouchableOpacity>
 			</View>
+			<SearchBar onTextChange={text => searchNews(text)}/>
 			{(fetchingData)
 				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={{ top: '38%' }} />
 				:
 				<FlatList
-					data={data}
+					data={isSearch ? filteredData : data}
 					renderItem={({ item }) => <Item item={item} />}
 					keyExtractor={item => item.id}
 				/>

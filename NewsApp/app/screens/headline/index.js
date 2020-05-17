@@ -19,12 +19,15 @@ import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
 import Constants from '../../util/constants';
+import {SearchBar} from '../../components';
 import { Colors } from '../../util';
 
 const Headline = props => {
 	const isFocused = useIsFocused();
 	const [ fetchingData, setFetchingData ] = useState(true);
 	const [ headlines, setHeadlines ] = useState([]);
+	const [ filteredData, setFilteredData ] = useState([]);
+	const [ isSearch, setIsSearch ] = useState(false);
 
 	const Item = ({ item }) => {
 		return (
@@ -60,18 +63,32 @@ const Headline = props => {
 			});
 	};
 
+	const searchHeadlines = (text) =>{
+		if ('' === text){
+			setIsSearch(false);
+		} else {
+			setIsSearch(true);
+			setFilteredData([]);
+			let filteredHeadlines = headlines.filter(item => {
+				return item.title.toLowerCase().includes(text.toLowerCase());
+			});
+			setFilteredData(filteredHeadlines);
+		}
+	};
+
 	useEffect(() => {
 		fetchData();
 	}, [isFocused]);
 
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={styles.title}>Headline</Text>
+			<Text style={styles.title}>Headlines</Text>
+			<SearchBar onTextChange={text => searchHeadlines(text)}/>
 			{(fetchingData)
 				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={{ top: '38%' }} />
 				:
 				<FlatList
-					data={headlines}
+					data={isSearch ? filteredData : headlines}
 					renderItem={({ item }) => <Item item={item} />}
 					keyExtractor={item => item.id}
 				/>
