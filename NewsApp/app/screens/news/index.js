@@ -4,7 +4,7 @@
  * News
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-17
  */
 import React, { useEffect, useState } from 'react';
 import {
@@ -12,15 +12,13 @@ import {
 	View,
 	FlatList,
 	Text,
-	Image,
-	ActivityIndicator,
-	TouchableOpacity
+	ActivityIndicator
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
 import Constants from '../../util/constants';
-import {SearchBar, Chip} from '../../components';
+import {SearchBar, Chip, Article, EmptyList} from '../../components';
 import { Colors } from '../../util';
 
 const News = props => {
@@ -34,20 +32,6 @@ const News = props => {
 	const [ isAppleSelected, setIsAppleSelected ] = useState(false);
 	const [ isEarthquakeSelected, setIsEarthquakeSelected ] = useState(false);
 	const [ isAnimalSelected, setIsAnimalSelected ] = useState(false);
-
-	const Item = ({ item }) => {
-		return (
-			<TouchableOpacity style={styles.item} onPress={() => props.navigation.navigate('detail', { newsItem: item })}>
-				<Image
-					style={styles.itemImage}
-					source={{
-						uri: item.urlToImage
-					}}
-				/>
-				<Text style={styles.itemTitle}>{item.title}</Text>
-			</TouchableOpacity>
-		);
-	};
 
 	const onClickBitcoin = () => {
 		fetchData('bitcoin');
@@ -90,7 +74,7 @@ const News = props => {
 		setData([]);
 		setFilteredData([]);
 		setFetchingData(true);
-		axios.get('https://news1api.org/v2/everything', {
+		axios.get('https://newsapi.org/v2/everything', {
 			params: {
 				q: source,
 				apiKey: Constants.API_KEY
@@ -136,17 +120,13 @@ const News = props => {
 			</View>
 			<SearchBar onTextChange={text => searchNews(text)}/>
 			{(fetchingData)
-				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={{ top: '38%' }} />
+				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={styles.activityIndicator} />
 				:
 				<FlatList
 					data={isSearch ? filteredData : data}
-					renderItem={({ item }) => <Item item={item} />}
+					renderItem={({ item }) => <Article item={item} navigation={props.navigation}/>}
 					keyExtractor={item => item.id}
-					ListEmptyComponent={
-						<View style={styles.emptyListView}>
-							<Text style={styles.emptyText}>No Articles</Text>
-						</View>
-					}
+					ListEmptyComponent={<EmptyList/>}
 				/>
 			}
 		</SafeAreaView>
