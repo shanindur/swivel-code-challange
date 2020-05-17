@@ -13,7 +13,8 @@ import {
 	Text,
 	Image,
 	ActivityIndicator,
-	TouchableOpacity
+	TouchableOpacity,
+	View
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
@@ -45,7 +46,7 @@ const Headline = props => {
 
 	const fetchData = () => {
 		setFetchingData(true);
-		axios.get('https://newsapi.org/v2/top-headlines', {
+		axios.get('https://new1sapi.org/v2/top-headlines', {
 			params: {
 				sources: 'bbc-news',
 				apiKey: Constants.API_KEY
@@ -91,6 +92,11 @@ const Headline = props => {
 					data={isSearch ? filteredData : headlines}
 					renderItem={({ item }) => <Item item={item} />}
 					keyExtractor={item => item.id}
+					ListEmptyComponent={
+						<View style={styles.emptyListView}>
+							<Text style={styles.emptyText}>No Articles</Text>
+						</View>
+					}
 				/>
 			}
 		</SafeAreaView>
