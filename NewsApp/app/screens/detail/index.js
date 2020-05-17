@@ -18,7 +18,6 @@ import {
 } from 'react-native';
 import styles from './style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { Colors, Fonts } from '../../util';
 import Moment from 'moment';
 
 
@@ -54,8 +53,8 @@ const Detail = props => {
 			<ScrollView>
 				<Text style={styles.description}>{description}</Text>
 				<View style={styles.authorView}>
-					<Text style={{width:'75%', fontSize:Fonts.xSmall, color: Colors.grey}}>By {author}</Text>
-					<Text style={{width:'25%', textAlign:'right', fontSize:Fonts.xSmall, color: Colors.grey}}>{formatDate(publishedAt)}</Text>
+					<Text style={styles.authorText}>By {author}</Text>
+					<Text style={styles.dateText}>{formatDate(publishedAt)}</Text>
 				</View>
 				<Image
 					style={styles.itemImage}

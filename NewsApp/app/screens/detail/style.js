@@ -42,6 +42,17 @@ const styles = StyleSheet.create({
 		flexDirection:'row',
 		padding:10
 	},
+	authorText:{
+		width:'75%',
+		fontSize:Fonts.xSmall,
+		color: Colors.grey
+	},
+	dateText:{
+		width:'25%',
+		textAlign:'right',
+		fontSize:Fonts.xSmall,
+		color: Colors.grey
+	},
 	itemImage:{
 		width:'100%',
 		height:200
