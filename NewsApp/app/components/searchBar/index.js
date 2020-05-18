@@ -24,7 +24,7 @@ const SearchBar = props => {
 				<View style={styles.inputView}>
 					<TextInput
 						style={styles.SearchTextInput}
-						placeholder={'Search from title'}
+						placeholder={'Search by title'}
 						onChangeText={text => onTextChange(text)}
 					/>
 				</View>
