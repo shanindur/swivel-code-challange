@@ -12,7 +12,9 @@ import {
 	ScrollView,
 	View,
 	Text,
-	TextInput
+	TextInput,
+	Modal,
+	TouchableOpacity
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {Avatar, SquareButton } from '../../components';
@@ -22,6 +24,8 @@ import styles from './style';
 import {useStore} from '../../store';
 import {StorageService} from '../../services';
 import { Colors } from '../../util';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { InputText } from 'react-native-textinput-effects';
 
 const options = {
 	title: 'Select Image',
@@ -41,6 +45,7 @@ const Profile = props => {
 	const [lastName, setLastName] = useState();
 	const [email, setEmail] = useState();
 	const [proImage, setProImage] = useState();
+	const [editModalVisible, setEditModalVisible] = useState(false);
 
 	const editProfilePicture = async () => {
 		ImagePicker.showImagePicker(options, (response) => {
@@ -67,7 +72,8 @@ const Profile = props => {
 		dispatch({type: 'updateUser', user: USER});
 		await StorageService.storeData('USER', USER);
 
-		Toast.showWithGravity('Your details was saved successfuly!', Toast.LONG, Toast.CENTER);
+		setEditModalVisible(false);
+		Toast.showWithGravity('Your details was saved successfully!', Toast.LONG, Toast.CENTER);
 
 	};
 
@@ -97,15 +103,43 @@ const Profile = props => {
 				</View>
 				<View style={styles.detailView}>
 					<View style={styles.nameView}>
-						<TextInput onChangeText={(value) => setFirstName(value)} style={[styles.textInput,{textAlign:'right'}]} value={firstName}  placeholder="Enter First Name"/>
-						<TextInput onChangeText={(value) => setLastName(value)} style={[styles.textInput,{textAlign:'left'}]} value={lastName}  placeholder="Enter Last Name"/>
+						<Text style={styles.text}>{firstName}</Text>
+						<View style={{width:'3%'}}/>
+						<Text style={styles.text}>{lastName}</Text>
 					</View>
-					<TextInput onChangeText={(value) => setEmail(value)}  style={styles.textInput} value={email}  placeholder="Enter Email"/>
+					<Text style={styles.emailText}>{email}</Text>
 				</View>
 				<View style={styles.buttonView}>
-					<SquareButton onPress={() => saveUser()} rounded={true} text={'Save'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
+					<SquareButton onPress={() => setEditModalVisible(true)} rounded={true} text={'Edit'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
 				</View>
 			</ScrollView>
+			<Modal
+				animationType={'fade'}
+				transparent={true}
+				visible={editModalVisible}
+			>
+				<View style={styles.overlay}>
+					<TouchableOpacity
+						style={styles.overlayTouchable}
+						onPress={() => setEditModalVisible(false)}
+					/>
+				</View>
+				<View style={styles.modalContentWrapper}>
+					<View style={[styles.modalContent]}>
+						<Text style={styles.title}>Edit User Details</Text>
+					</View>
+					<View style={styles.modalDetailContent}>
+						<View style={styles.nameView}>
+							<TextInput testID={'firstName'} onChangeText={(value) => setFirstName(value)} style={[styles.textInput,{textAlign:'right'}]} value={firstName}  placeholder="Enter First Name"/>
+							<TextInput testID={'lastName'} onChangeText={(value) => setLastName(value)} style={[styles.textInput,{textAlign:'left'}]} value={lastName}  placeholder="Enter Last Name"/>
+						</View>
+						<TextInput onChangeText={(value) => setEmail(value)}  style={styles.textInput} value={email}  placeholder="Enter Email"/>
+					</View>
+					<View style={styles.buttonView}>
+						<SquareButton onPress={() => saveUser()} rounded={true} text={'Update'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
+					</View>
+				</View>
+			</Modal>
 		</SafeAreaView>
 	);
 

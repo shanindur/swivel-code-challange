@@ -35,15 +35,22 @@ const styles = StyleSheet.create({
 	},
 	detailView:{
 		alignItems: 'center',
-		marginTop:50
+		marginTop:10
 	},
 	nameView:{
 		flexDirection:'row'
 	},
+	text:{
+		fontSize:Fonts.xxLarge,
+		fontWeight:'bold'
+	},
+	emailText:{
+		fontSize:Fonts.xLarge
+	},
 	textInput:{
 		height:40,
-		fontSize:Fonts.large
-
+		fontSize:Fonts.large,
+		borderWidth:1
 	},
 	buttonView: {
 		alignItems: 'center'
@@ -55,6 +62,36 @@ const styles = StyleSheet.create({
 		padding: 5,
 		marginVertical: 3,
 		marginHorizontal: 10
+	},
+	overlay: {
+		flex: 1,
+		backgroundColor: Colors.black,
+		opacity: 0.7
+	},
+	overlayTouchable: {
+		flex: 1
+	},
+	modalContentWrapper: {
+		height: 250,
+		width: '80%',
+		backgroundColor: Colors.white,
+		alignSelf: 'center',
+		top: '30%',
+		borderRadius: 20,
+		position: 'absolute',
+		zIndex: 2,
+		shadowOffset: { width: 0, height: 2 },
+		shadowOpacity: 1,
+		shadowRadius: 10,
+		elevation: 5
+	},
+	modalContent: {
+		flex: 1,
+		alignItems:'center'
+	},
+	modalDetailContent:{
+		alignItems: 'center',
+		marginTop:30
 	}
 
 });
