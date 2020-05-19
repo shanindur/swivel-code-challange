@@ -9,6 +9,7 @@
 import React, { useEffect, useState } from 'react';
 import {
 	SafeAreaView,
+	View,
 	FlatList,
 	Text,
 	ActivityIndicator
@@ -26,9 +27,12 @@ const Headline = props => {
 	const [ headlines, setHeadlines ] = useState([]);
 	const [ filteredData, setFilteredData ] = useState([]);
 	const [ isSearch, setIsSearch ] = useState(false);
+	const [isUpdating, setIsUpdating] = useState(false);
 
 	const fetchData = () => {
 		setFetchingData(true);
+		setIsUpdating(true);
+		setHeadlines([]);
 		axios.get('https://newsapi.org/v2/top-headlines', {
 			params: {
 				sources: 'bbc-news',
@@ -44,6 +48,7 @@ const Headline = props => {
 			})
 			.finally(() => {
 				setFetchingData(false);
+				setIsUpdating(false);
 			});
 	};
 
@@ -68,14 +73,25 @@ const Headline = props => {
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>Headlines</Text>
 			<SearchBar onTextChange={text => searchHeadlines(text)}/>
-			{(fetchingData)
+			{(!fetchingData && headlines && (0 === headlines.length))
+				? (
+					<View style={{ alignItems: 'center', top: '38%' }}>
+						<Text>Looks like there are no articles...</Text>
+						<Text>Pull down to refresh</Text>
+					</View>
+				)
+				: null
+			}
+			{(fetchingData && headlines)
 				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={styles.activityIndicator} />
 				:
 				<FlatList
 					data={isSearch ? filteredData : headlines}
+					onRefresh={() => fetchData()}
+					refreshing={isUpdating}
 					renderItem={({ item }) => <Article item={item} navigation={props.navigation}/>}
 					keyExtractor={item => item.id}
-					ListEmptyComponent={<EmptyList/>}
+					// ListEmptyComponent={<EmptyList/>}
 				/>
 			}
 		</SafeAreaView>
