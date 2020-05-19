@@ -8,10 +8,11 @@
  */
 import React from 'react';
 import {SafeAreaView, ImageBackground} from 'react-native';
+import styles from './style';
 
 const SplashScreen = () => (
 	<SafeAreaView>
-		<ImageBackground style={{height: '100%', width: '100%'}} source={require('../../assets/images/splash.jpg')}/>
+		<ImageBackground style={styles.imageBackground} source={require('../../assets/images/splash.jpg')}/>
 	</SafeAreaView>
 );
 export default SplashScreen;
