@@ -107,7 +107,20 @@ const News = props => {
 	};
 
 	useEffect(() => {
-		onClickBitcoin();
+		switch (selectedSource) {
+			case 'apple':
+				onClickApple();
+				break;
+			case 'earthquake':
+				onClickEarthquake();
+				break;
+			case 'animal':
+				onClickAnimal();
+				break;
+			default:
+				onClickBitcoin();
+				break;
+		}
 	}, [isFocused]);
 
 	return (
