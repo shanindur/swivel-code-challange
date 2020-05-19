@@ -115,7 +115,7 @@ const Profile = props => {
 					<Text style={styles.emailText}>{email}</Text>
 				</View>
 				<View style={styles.buttonView}>
-					<SquareButton onPress={() => setEditModalVisible(true)} rounded={true} text={'Edit'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
+					<SquareButton onPress={() => setEditModalVisible(true)} rounded={true} text={'Edit'} backgroundColor={Colors.primaryColor} buttonWidth={'30%'} fontColor={Colors.white} fontSize={18} />
 				</View>
 			</ScrollView>
 			<Modal
@@ -131,12 +131,12 @@ const Profile = props => {
 				</View>
 				<View style={styles.modalContentWrapper}>
 					<View style={[styles.modalContent]}>
-						<Text style={styles.title}>Edit User Details</Text>
+						<Text style={styles.title}>Edit User</Text>
 					</View>
 					<View style={styles.modalDetailContent}>
-						<TextInput placeholder={'First Name'} iconName={'user-o'} onChangeText={(value)=>setFirstName(value)} value={firstName}/>
-						<TextInput placeholder={'Last Name'} iconName={'user-o'} onChangeText={(value)=>setLastName(value)} value={lastName}/>
-						<TextInput placeholder={'Email'} iconName={'envelope-o'} onChangeText={(value)=>setEmail(value)} value={email}/>
+						<TextInput testID={'firstName'} placeholder={'First Name'} iconName={'user-o'} onChangeText={(value)=>setFirstName(value)} value={firstName}/>
+						<TextInput testID={'lastName'} placeholder={'Last Name'} iconName={'user-o'} onChangeText={(value)=>setLastName(value)} value={lastName}/>
+						<TextInput testID={'email'} placeholder={'Email'} iconName={'envelope-o'} onChangeText={(value)=>setEmail(value)} value={email}/>
 					</View>
 					<View style={styles.buttonView}>
 						<SquareButton onPress={() => saveUser()} rounded={true} text={'Update'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />

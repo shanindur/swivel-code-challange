@@ -48,7 +48,8 @@ const styles = StyleSheet.create({
 		fontWeight:'bold'
 	},
 	emailText:{
-		fontSize:Fonts.xLarge
+		fontSize:Fonts.medium,
+		color:Colors.grey
 	},
 	buttonView: {
 		alignItems: 'center'
