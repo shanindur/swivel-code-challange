@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 	textInput: {
 		marginLeft: 10,
 		fontSize: 16,
-		color: Colors.primaryColor,
+		color: Colors.black,
 		width: '80%'
 	}
 });
