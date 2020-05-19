@@ -4,7 +4,7 @@
  * Avatar Component
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-19
  */
 import React from 'react';
 import {View, Image} from 'react-native';
@@ -23,7 +23,7 @@ const Avatar = props => {
 				source={{
 					uri: `${props.image}`,
 					headers: {
-						Pragma: 'no-cache',
+						Pragma: 'no-cache'
 					}
 				}}
 			/>

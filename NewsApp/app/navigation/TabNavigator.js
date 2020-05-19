@@ -4,7 +4,7 @@
  * TabNavigation
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-19
  */
 import React from 'react';
 import {Image, View, Text, StyleSheet} from 'react-native';
@@ -17,81 +17,75 @@ import {Colors, Fonts} from '../util';
 const Tab = createMaterialTopTabNavigator();
 const TabStack = createStackNavigator();
 
-const TabStackNavigator = props => {
-	return (
-		<TabStack.Navigator
-			screenOptions={{
-				headerStyle: {
-					elevation: 0
-				}
-			}}>
-			<TabStack.Screen
-				name="posts"
-				component={TabNavigator}
-				options={{
-					headerTitle: () => <HeaderLogo />
-				}}
-			/>
-		</TabStack.Navigator>
-	);
-};
-
-const HeaderLogo = () => {
-	return (
-		<View style={styles.logoView}>
-			<Image style={styles.headerLogo} source={require('../assets/images/logo.png')} />
-			<Text style={styles.logoText}>Global News</Text>
-		</View>
-	);
-};
-
-const TabNavigator = props => {
-	return (
-		<Tab.Navigator
-			swipeEnabled={false}
-			tabBarOptions={{
-				style: styles.tabNavigatorStyle,
-				activeBackgroundColor: Colors.white,
-				inactiveBackgroundColor: Colors.white,
-				inactiveTintColor: Colors.primaryIcon,
-				activeTintColor: Colors.primaryColor,
-				showIcon: true,
-				showLabel: false,
-				indicatorStyle: styles.tabIndicatorStyle,
-				iconStyle: styles.tabIconStyle
+const TabStackNavigator = props => (
+	<TabStack.Navigator
+		screenOptions={{
+			headerStyle: {
+				elevation: 0
+			}
+		}}>
+		<TabStack.Screen
+			name="posts"
+			component={TabNavigator}
+			options={{
+				headerTitle: () => <HeaderLogo />
 			}}
-			lazy={true}
-		>
-			<Tab.Screen
-				name="headline"
-				component={HeadlineStack}
-				options={{
-					tabBarIcon: ({focused, color}) => (
-						<Icon name="home" size={25} color={color} />
-					)
-				}}
-			/>
-			<Tab.Screen
-				name="news"
-				component={NewsStack}
-				options={{
-					tabBarIcon: ({focused, color}) => (
-						<Icon name="newspaper" size={25} color={color} />
-					)
-				}}
-			/>
-			<Tab.Screen
-				name="profile"
-				component={ProfileStack}
-				options={{
-					tabBarIcon: ({focused, color}) => (
-						<Icon name="user" size={25} color={color} />
-					)
-				}}
-			/>
-		</Tab.Navigator>
-	);
-};
+		/>
+	</TabStack.Navigator>
+);
+
+const HeaderLogo = () => (
+	<View style={styles.logoView}>
+		<Image style={styles.headerLogo} source={require('../assets/images/logo.png')} />
+		<Text style={styles.logoText}>Global News</Text>
+	</View>
+);
+
+const TabNavigator = props => (
+	<Tab.Navigator
+		swipeEnabled={false}
+		tabBarOptions={{
+			style: styles.tabNavigatorStyle,
+			activeBackgroundColor: Colors.white,
+			inactiveBackgroundColor: Colors.white,
+			inactiveTintColor: Colors.primaryIcon,
+			activeTintColor: Colors.primaryColor,
+			showIcon: true,
+			showLabel: false,
+			indicatorStyle: styles.tabIndicatorStyle,
+			iconStyle: styles.tabIconStyle
+		}}
+		lazy={true}
+	>
+		<Tab.Screen
+			name="headline"
+			component={HeadlineStack}
+			options={{
+				tabBarIcon: ({focused, color}) => (
+					<Icon name="home" size={25} color={color} />
+				)
+			}}
+		/>
+		<Tab.Screen
+			name="news"
+			component={NewsStack}
+			options={{
+				tabBarIcon: ({focused, color}) => (
+					<Icon name="newspaper" size={25} color={color} />
+				)
+			}}
+		/>
+		<Tab.Screen
+			name="profile"
+			component={ProfileStack}
+			options={{
+				tabBarIcon: ({focused, color}) => (
+					<Icon name="user" size={25} color={color} />
+				)
+			}}
+		/>
+	</Tab.Navigator>
+);
 
 export default TabStackNavigator;
 

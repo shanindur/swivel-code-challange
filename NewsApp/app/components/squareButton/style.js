@@ -16,8 +16,8 @@ const styles = stylesProps =>
 			minWidth: stylesProps.buttonWidth,
 			maxWidth: Dimensions.get('window').width * 0.9,
 			paddingHorizontal: 20,
-			borderColor:Colors.primaryColor,
-			borderWidth:2,
+			borderColor: Colors.primaryColor,
+			borderWidth: 2,
 			borderRadius: stylesProps.rounded ? 50 : 10,
 			minHeight: 40,
 			alignItems: 'center',
@@ -28,7 +28,7 @@ const styles = stylesProps =>
 			shadowRadius: 10
 		},
 		textStyle: {
-			textAlign:'center',
+			textAlign: 'center',
 			color: Colors.primaryColor,
 			fontSize: stylesProps.fontSize
 		}

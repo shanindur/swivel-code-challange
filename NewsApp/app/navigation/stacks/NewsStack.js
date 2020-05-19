@@ -12,25 +12,23 @@ import { News, Detail } from '../../screens';
 
 const NewsStackNav = createStackNavigator();
 
-const NewsStack = () => {
-	return (
-		<NewsStackNav.Navigator
-			initialRouteName="news"
-		>
-			<NewsStackNav.Screen
-				options={{
-					headerShown: false
-				}}
-				name="news" component={News}
-			/>
-			<NewsStackNav.Screen
-				options={{
-					headerShown: false
-				}}
-				name="detail" component={Detail}
-			/>
-		</NewsStackNav.Navigator>
-	);
-};
+const NewsStack = () => (
+	<NewsStackNav.Navigator
+		initialRouteName="news"
+	>
+		<NewsStackNav.Screen
+			options={{
+				headerShown: false
+			}}
+			name="news" component={News}
+		/>
+		<NewsStackNav.Screen
+			options={{
+				headerShown: false
+			}}
+			name="detail" component={Detail}
+		/>
+	</NewsStackNav.Navigator>
+);
 
 export default NewsStack;

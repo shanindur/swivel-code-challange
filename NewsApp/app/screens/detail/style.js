@@ -15,8 +15,8 @@ const styles = StyleSheet.create({
 		backgroundColor: Colors.white
 	},
 	headerView: {
-		padding:10,
-		width:'100%',
+		padding: 10,
+		width: '100%',
 		flexDirection: 'row'
 	},
 
@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
 		fontSize: Fonts.xxLarge,
 		padding: 10,
 		fontWeight: 'bold',
-		textAlign:'center'
+		textAlign: 'center'
 	},
 	description: {
 		fontSize: Fonts.small,
 		padding: 10,
 		fontWeight: 'bold',
-		textAlign:'center',
+		textAlign: 'center',
 		color: Colors.grey
 	},
 	content: {
@@ -38,24 +38,24 @@ const styles = StyleSheet.create({
 		padding: 10,
 		textAlign: 'justify'
 	},
-	authorView:{
-		flexDirection:'row',
-		padding:10
+	authorView: {
+		flexDirection: 'row',
+		padding: 10
 	},
-	authorText:{
-		width:'75%',
-		fontSize:Fonts.xSmall,
+	authorText: {
+		width: '75%',
+		fontSize: Fonts.xSmall,
 		color: Colors.grey
 	},
-	dateText:{
-		width:'25%',
-		textAlign:'right',
-		fontSize:Fonts.xSmall,
+	dateText: {
+		width: '25%',
+		textAlign: 'right',
+		fontSize: Fonts.xSmall,
 		color: Colors.grey
 	},
-	itemImage:{
-		width:'100%',
-		height:200
+	itemImage: {
+		width: '100%',
+		height: 200
 	}
 });
 

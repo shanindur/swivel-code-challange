@@ -4,19 +4,17 @@ import { Profile } from '../../screens';
 
 const ProfileStackNav = createStackNavigator();
 
-const ProfileStack = () => {
-	return (
-		<ProfileStackNav.Navigator
-			initialRouteName="profile"
-		>
-			<ProfileStackNav.Screen
-				options={{
-					headerShown: false
-				}}
-				name="profile" component={Profile}
-			/>
-		</ProfileStackNav.Navigator>
-	);
-};
+const ProfileStack = () => (
+	<ProfileStackNav.Navigator
+		initialRouteName="profile"
+	>
+		<ProfileStackNav.Screen
+			options={{
+				headerShown: false
+			}}
+			name="profile" component={Profile}
+		/>
+	</ProfileStackNav.Navigator>
+);
 
 export default ProfileStack;

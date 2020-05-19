@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		color: Colors.primaryIcon
 	},
-	activityIndicator:{
+	activityIndicator: {
 		top: '38%'
 	}
 });

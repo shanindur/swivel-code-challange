@@ -23,7 +23,7 @@ import Moment from 'moment';
 
 const Detail = props => {
 
-	const { params: {newsItem :{
+	const { params: {newsItem: {
 		author,
 		content,
 		description,
@@ -42,7 +42,7 @@ const Detail = props => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<View style={styles.headerView}>
-				<TouchableOpacity onPress={()=> props.navigation.goBack()} style={{width:'90%'}}>
+				<TouchableOpacity onPress={() => props.navigation.goBack()} style={{width:'90%'}}>
 					<Icon name={'arrow-left'} size={20} />
 				</TouchableOpacity>
 				<TouchableOpacity onPress={() => {Linking.openURL(url);}}>

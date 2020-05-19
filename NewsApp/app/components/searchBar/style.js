@@ -15,10 +15,10 @@ const styles = StyleSheet.create({
 		flexDirection: 'row',
 		alignItems: 'center',
 		borderWidth: 0,
-		borderBottomWidth:1,
+		borderBottomWidth: 1,
 		borderColor: Colors.primaryColor,
 		backgroundColor: Colors.white,
-		marginBottom:10
+		marginBottom: 10
 	},
 	iconView: {
 		height: 40,

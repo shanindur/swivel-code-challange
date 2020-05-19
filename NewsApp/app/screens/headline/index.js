@@ -4,7 +4,7 @@
  * Headline
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-17
+ * @version      0.0.1 2020-May-19
  */
 import React, { useEffect, useState } from 'react';
 import {
@@ -17,9 +17,8 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
-import {Constants} from '../../util';
-import {SearchBar, Article, EmptyList} from '../../components';
-import { Colors } from '../../util';
+import {Colors, Constants} from '../../util';
+import {SearchBar, Article} from '../../components';
 
 const Headline = props => {
 	const isFocused = useIsFocused();
@@ -40,7 +39,7 @@ const Headline = props => {
 			}
 		})
 			.then(response => {
-				console.log(response.data.articles);
+				console.log(response);
 				setHeadlines(response.data.articles);
 			})
 			.catch(error => {
@@ -52,15 +51,13 @@ const Headline = props => {
 			});
 	};
 
-	const searchHeadlines = (text) =>{
+	const searchHeadlines = (text) => {
 		if ('' === text){
 			setIsSearch(false);
 		} else {
 			setIsSearch(true);
 			setFilteredData([]);
-			let filteredHeadlines = headlines.filter(item => {
-				return item.title.toLowerCase().includes(text.toLowerCase());
-			});
+			const filteredHeadlines = headlines.filter(item => item.title.toLowerCase().includes(text.toLowerCase()));
 			setFilteredData(filteredHeadlines);
 		}
 	};

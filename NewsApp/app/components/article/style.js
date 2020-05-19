@@ -4,7 +4,7 @@
  * Article -> style
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-17
+ * @version      0.0.1 2020-May-19
  */
 import {StyleSheet} from 'react-native';
 import {Colors, Fonts} from '../../util';
@@ -17,9 +17,9 @@ const styles = StyleSheet.create({
 		marginVertical: 3,
 		marginHorizontal: 10
 	},
-	itemImage:{
-		width:'100%',
-		height:180
+	itemImage: {
+		width: '100%',
+		height: 180
 	},
 	itemTitle: {
 		fontSize: Fonts.large,

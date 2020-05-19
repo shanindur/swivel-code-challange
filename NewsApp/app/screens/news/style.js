@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold'
 	},
 	chipContainer: {
-		flexDirection:'row',
-		justifyContent:'center',
-		paddingBottom:10
+		flexDirection: 'row',
+		justifyContent: 'center',
+		paddingBottom: 10
 
 	},
-	activityIndicator:{
+	activityIndicator: {
 		top: '38%'
 	}
 });

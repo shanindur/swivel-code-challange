@@ -63,7 +63,7 @@ const Profile = props => {
 		});
 	};
 
-	const saveUser = async()=>{
+	const saveUser = async() => {
 		const USER = {
 			fname: firstName,
 			lname: lastName,
@@ -134,9 +134,9 @@ const Profile = props => {
 						<Text style={styles.title}>Edit User</Text>
 					</View>
 					<View style={styles.modalDetailContent}>
-						<TextInput testID={'firstName'} placeholder={'First Name'} iconName={'user-o'} onChangeText={(value)=>setFirstName(value)} value={firstName}/>
-						<TextInput testID={'lastName'} placeholder={'Last Name'} iconName={'user-o'} onChangeText={(value)=>setLastName(value)} value={lastName}/>
-						<TextInput testID={'email'} placeholder={'Email'} iconName={'envelope-o'} onChangeText={(value)=>setEmail(value)} value={email}/>
+						<TextInput testID={'firstName'} placeholder={'First Name'} iconName={'user-o'} onChangeText={(value) => setFirstName(value)} value={firstName}/>
+						<TextInput testID={'lastName'} placeholder={'Last Name'} iconName={'user-o'} onChangeText={(value) => setLastName(value)} value={lastName}/>
+						<TextInput testID={'email'} placeholder={'Email'} iconName={'envelope-o'} onChangeText={(value) => setEmail(value)} value={email}/>
 					</View>
 					<View style={styles.buttonView}>
 						<SquareButton onPress={() => saveUser()} rounded={true} text={'Update'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />

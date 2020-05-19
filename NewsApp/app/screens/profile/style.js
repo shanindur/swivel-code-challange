@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 		marginBottom: 5
 	},
 	span: {
-		width:'3%'
+		width: '3%'
 	},
 	title: {
 		fontSize: Fonts.xxLarge,
@@ -36,20 +36,20 @@ const styles = StyleSheet.create({
 	photoAvatar: {
 		alignItems: 'center'
 	},
-	detailView:{
+	detailView: {
 		alignItems: 'center',
-		marginTop:10
+		marginTop: 10
 	},
-	nameView:{
-		flexDirection:'row'
+	nameView: {
+		flexDirection: 'row'
 	},
-	text:{
-		fontSize:Fonts.xxLarge,
-		fontWeight:'bold'
+	text: {
+		fontSize: Fonts.xxLarge,
+		fontWeight: 'bold'
 	},
-	emailText:{
-		fontSize:Fonts.medium,
-		color:Colors.grey
+	emailText: {
+		fontSize: Fonts.medium,
+		color: Colors.grey
 	},
 	buttonView: {
 		alignItems: 'center'
@@ -86,11 +86,11 @@ const styles = StyleSheet.create({
 	},
 	modalContent: {
 		flex: 1,
-		alignItems:'center'
+		alignItems: 'center'
 	},
-	modalDetailContent:{
+	modalDetailContent: {
 		alignItems: 'center',
-		marginTop:30
+		marginTop: 30
 	}
 });
 

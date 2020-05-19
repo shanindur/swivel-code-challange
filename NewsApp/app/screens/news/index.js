@@ -17,9 +17,8 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
-import {SearchBar, Chip, Article, EmptyList} from '../../components';
-import { Colors } from '../../util';
-import { Constants } from '../../util';
+import {SearchBar, Chip, Article} from '../../components';
+import { Colors, Constants } from '../../util';
 
 const News = props => {
 	const isFocused = useIsFocused();
@@ -102,9 +101,7 @@ const News = props => {
 		} else {
 			setIsSearch(true);
 			setFilteredData([]);
-			let filteredNews = data.filter(item => {
-				return item.title.toLowerCase().includes(text.toLowerCase());
-			});
+			const filteredNews = data.filter(item => item.title.toLowerCase().includes(text.toLowerCase()));
 			setFilteredData(filteredNews);
 		}
 	};
@@ -117,10 +114,10 @@ const News = props => {
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>News</Text>
 			<View style={styles.chipContainer}>
-				<Chip onPress={()=>onClickBitcoin()} isBitcoinSelected={isBitcoinSelected} text={'Bitcoin'}/>
-				<Chip onPress={()=>onClickApple()} isBitcoinSelected={isAppleSelected} text={'Apple'}/>
-				<Chip onPress={()=>onClickEarthquake()} isBitcoinSelected={isEarthquakeSelected} text={'Earthquake'}/>
-				<Chip onPress={()=>onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
+				<Chip onPress={() => onClickBitcoin()} isBitcoinSelected={isBitcoinSelected} text={'Bitcoin'}/>
+				<Chip onPress={() => onClickApple()} isBitcoinSelected={isAppleSelected} text={'Apple'}/>
+				<Chip onPress={() => onClickEarthquake()} isBitcoinSelected={isEarthquakeSelected} text={'Earthquake'}/>
+				<Chip onPress={() => onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
 			</View>
 			<SearchBar onTextChange={text => searchNews(text)}/>
 			{(!fetchingData && data && (0 === data.length))
