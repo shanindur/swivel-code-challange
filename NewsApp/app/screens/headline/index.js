@@ -17,7 +17,7 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
-import Constants from '../../util/constants';
+import {Constants} from '../../util';
 import {SearchBar, Article, EmptyList} from '../../components';
 import { Colors } from '../../util';
 
@@ -33,7 +33,7 @@ const Headline = props => {
 		setFetchingData(true);
 		setIsUpdating(true);
 		setHeadlines([]);
-		axios.get('https://newsapi.org/v2/top-headlines', {
+		axios.get(Constants.BASE_URL + 'top-headlines', {
 			params: {
 				sources: 'bbc-news',
 				apiKey: Constants.API_KEY

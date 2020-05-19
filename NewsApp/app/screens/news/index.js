@@ -17,9 +17,9 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
-import Constants from '../../util/constants';
 import {SearchBar, Chip, Article, EmptyList} from '../../components';
 import { Colors } from '../../util';
+import { Constants } from '../../util';
 
 const News = props => {
 	const isFocused = useIsFocused();
@@ -77,7 +77,7 @@ const News = props => {
 		setData([]);
 		setFilteredData([]);
 		setFetchingData(true);
-		axios.get('https://newsapi.org/v2/everything', {
+		axios.get(Constants.BASE_URL + 'everything', {
 			params: {
 				q: source,
 				apiKey: Constants.API_KEY
