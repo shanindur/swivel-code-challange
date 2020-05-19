@@ -22,6 +22,9 @@ const styles = StyleSheet.create({
 		paddingVertical: 5,
 		marginBottom: 5
 	},
+	span: {
+		width:'3%'
+	},
 	title: {
 		fontSize: Fonts.xxLarge,
 		padding: 10,
@@ -47,11 +50,6 @@ const styles = StyleSheet.create({
 	emailText:{
 		fontSize:Fonts.xLarge
 	},
-	textInput:{
-		height:40,
-		fontSize:Fonts.large,
-		borderWidth:1
-	},
 	buttonView: {
 		alignItems: 'center'
 	},
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
 		flex: 1
 	},
 	modalContentWrapper: {
-		height: 250,
+		height: 300,
 		width: '80%',
 		backgroundColor: Colors.white,
 		alignSelf: 'center',
@@ -93,7 +91,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		marginTop:30
 	}
-
 });
 
 export default styles;

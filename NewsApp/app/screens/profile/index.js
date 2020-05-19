@@ -4,7 +4,7 @@
  * Profile
  *
  * @author       Shanindu Rajapaksha
- * @version      0.0.1 2020-May-10
+ * @version      0.0.1 2020-May-19
  */
 import React, { useEffect, useState } from 'react';
 import {
@@ -12,20 +12,17 @@ import {
 	ScrollView,
 	View,
 	Text,
-	TextInput,
 	Modal,
 	TouchableOpacity
 } from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
-import {Avatar, SquareButton } from '../../components';
+import {Avatar, SquareButton, TextInput } from '../../components';
 import ImagePicker from 'react-native-image-picker';
-import Toast from 'react-native-simple-toast';
 import styles from './style';
 import {useStore} from '../../store';
 import {StorageService} from '../../services';
 import { Colors } from '../../util';
-import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { InputText } from 'react-native-textinput-effects';
+import { showMessage } from 'react-native-flash-message';
 
 const options = {
 	title: 'Select Image',
@@ -33,7 +30,7 @@ const options = {
 		skipBackup: true,
 		path: 'images'
 	},
-	quality: 0.5,
+	quality: 1,
 	maxWidth: 200,
 	maxHeight: 200
 };
@@ -53,7 +50,11 @@ const Profile = props => {
 				// console.log('User cancelled image picker');
 			} else if (response.error) {
 				// console.log('ImagePicker Error: ', response.error);
-				Toast.showWithGravity(`${response.error}, Please go to settings ang give permission to use device images.`, Toast.LONG, Toast.CENTER);
+				showMessage({
+					message: `${response.error}, Please go to settings and give permission to use device images.`,
+					type: 'danger',
+					duration: 5000
+				});
 			} else if (response.customButton) {
 				// console.log('User tapped custom button: ', response.customButton);
 			} else {
@@ -73,7 +74,11 @@ const Profile = props => {
 		await StorageService.storeData('USER', USER);
 
 		setEditModalVisible(false);
-		Toast.showWithGravity('Your details was saved successfully!', Toast.LONG, Toast.CENTER);
+		showMessage({
+			message: 'Your details was saved successfully!',
+			type: 'success',
+			duration: 5000
+		});
 
 	};
 
@@ -104,7 +109,7 @@ const Profile = props => {
 				<View style={styles.detailView}>
 					<View style={styles.nameView}>
 						<Text style={styles.text}>{firstName}</Text>
-						<View style={{width:'3%'}}/>
+						<View style={styles.span}/>
 						<Text style={styles.text}>{lastName}</Text>
 					</View>
 					<Text style={styles.emailText}>{email}</Text>
@@ -129,11 +134,9 @@ const Profile = props => {
 						<Text style={styles.title}>Edit User Details</Text>
 					</View>
 					<View style={styles.modalDetailContent}>
-						<View style={styles.nameView}>
-							<TextInput testID={'firstName'} onChangeText={(value) => setFirstName(value)} style={[styles.textInput,{textAlign:'right'}]} value={firstName}  placeholder="Enter First Name"/>
-							<TextInput testID={'lastName'} onChangeText={(value) => setLastName(value)} style={[styles.textInput,{textAlign:'left'}]} value={lastName}  placeholder="Enter Last Name"/>
-						</View>
-						<TextInput onChangeText={(value) => setEmail(value)}  style={styles.textInput} value={email}  placeholder="Enter Email"/>
+						<TextInput placeholder={'First Name'} iconName={'user-o'} onChangeText={(value)=>setFirstName(value)} value={firstName}/>
+						<TextInput placeholder={'Last Name'} iconName={'user-o'} onChangeText={(value)=>setLastName(value)} value={lastName}/>
+						<TextInput placeholder={'Email'} iconName={'envelope-o'} onChangeText={(value)=>setEmail(value)} value={email}/>
 					</View>
 					<View style={styles.buttonView}>
 						<SquareButton onPress={() => saveUser()} rounded={true} text={'Update'} backgroundColor={Colors.primaryColor} buttonWidth={'50%'} fontColor={Colors.white} fontSize={18} />
