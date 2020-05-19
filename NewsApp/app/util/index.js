@@ -8,4 +8,5 @@
  */
 export {default as Colors} from './theme/colors';
 export {default as Fonts} from './theme/fonts';
+export {default as Constants} from './constants';
 
