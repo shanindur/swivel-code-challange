@@ -27,6 +27,8 @@ const News = props => {
 	const [ data, setData ] = useState([]);
 	const [ filteredData, setFilteredData ] = useState([]);
 	const [ isSearch, setIsSearch ] = useState(false);
+	const [isUpdating, setIsUpdating] = useState(false);
+	const [selectedSource, setSelectedSource] = useState('');
 
 	const [ isBitcoinSelected, setIsBitcoinSelected ] = useState(false);
 	const [ isAppleSelected, setIsAppleSelected ] = useState(false);
@@ -35,7 +37,7 @@ const News = props => {
 
 	const onClickBitcoin = () => {
 		fetchData('bitcoin');
-
+		setSelectedSource('bitcoin');
 		setIsBitcoinSelected(true);
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(false);
@@ -44,7 +46,7 @@ const News = props => {
 
 	const onClickApple = () => {
 		fetchData('apple');
-
+		setSelectedSource('apple');
 		setIsBitcoinSelected(false);
 		setIsAppleSelected(true);
 		setIsEarthquakeSelected(false);
@@ -53,7 +55,7 @@ const News = props => {
 
 	const onClickEarthquake = () => {
 		fetchData('earthquake');
-
+		setSelectedSource('earthquake');
 		setIsBitcoinSelected(false);
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(true);
@@ -62,7 +64,7 @@ const News = props => {
 
 	const onClickAnimal = () => {
 		fetchData('animal');
-
+		setSelectedSource('animal');
 		setIsBitcoinSelected(false);
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(false);
@@ -71,6 +73,7 @@ const News = props => {
 
 	const fetchData = (source) => {
 		setIsSearch(false);
+		setIsUpdating(true);
 		setData([]);
 		setFilteredData([]);
 		setFetchingData(true);
@@ -89,6 +92,7 @@ const News = props => {
 			})
 			.finally(() => {
 				setFetchingData(false);
+				setIsUpdating(false);
 			});
 	};
 
@@ -119,14 +123,25 @@ const News = props => {
 				<Chip onPress={()=>onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
 			</View>
 			<SearchBar onTextChange={text => searchNews(text)}/>
-			{(fetchingData)
+			{(!fetchingData && data && (0 === data.length))
+				? (
+					<View style={{ alignItems: 'center', top: '38%' }}>
+						<Text>Looks like there are no articles...</Text>
+						<Text>Pull down to refresh</Text>
+					</View>
+				)
+				: null
+			}
+			{(fetchingData && data)
 				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={styles.activityIndicator} />
 				:
 				<FlatList
 					data={isSearch ? filteredData : data}
+					onRefresh={() => fetchData(selectedSource)}
+					refreshing={isUpdating}
 					renderItem={({ item }) => <Article item={item} navigation={props.navigation}/>}
 					keyExtractor={item => item.id}
-					ListEmptyComponent={<EmptyList/>}
+					// ListEmptyComponent={<EmptyList/>}
 				/>
 			}
 		</SafeAreaView>
