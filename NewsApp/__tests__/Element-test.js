@@ -1,14 +1,19 @@
 // __tests__/Element-test.js
 import React from 'react';
-import {Profile} from '../app/screens';
+import {EmptyList} from '../app/components';
 
 import renderer from 'react-test-renderer';
 
-let findElement = (tree, element) => {
+global.fetch = jest.fn(() => new Promise(resolve => resolve()));
+jest.mock('react-native-gesture-handler', () => {});
+jest.mock('react-native-image-picker', () => {});
+jest.mock('@react-native-community/async-storage', () => {});
+
+const findElement = (tree, element) => {
 
 	let result;
 
-	for (let node in tree.children){
+	for (const node in tree.children){
 		if (tree.children[node].props.testID === element) {
 			result = tree;
 		}
@@ -16,8 +21,8 @@ let findElement = (tree, element) => {
 	return result;
 };
 
-it('find element', () => {
-	const tree = renderer.create(<Profile />).toJSON();
+it('Testing element', () => {
+	const tree = renderer.create(<EmptyList />).toJSON();
 
-	expect(findElement(tree,'firstName')).toBeDefined();
+	expect(findElement(tree, 'article')).toBeDefined();
 });
