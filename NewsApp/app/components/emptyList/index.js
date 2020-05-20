@@ -4,7 +4,7 @@ import styles from './style';
 
 const EmptyList = () => (
 	<View style={styles.emptyListContainer}>
-		<Text style={styles.emptyText}>No Articles</Text>
+		<Text testID={'article'} style={styles.emptyText}>No Articles</Text>
 	</View>
 );
 
