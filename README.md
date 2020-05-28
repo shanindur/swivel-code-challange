@@ -2,6 +2,9 @@
 
 This mobile application allows the users to view news from all around the world at their fingertips this application consists of three tabs (Headline, Custom News and Profile), providing users one-click access to all its pages.
 
+# Demo
+https://play.google.com/store/apps/details?id=com.spacebar.globalnews
+
 # Installation
 
 1. In your machine, you have to install Node.js, Yarn
