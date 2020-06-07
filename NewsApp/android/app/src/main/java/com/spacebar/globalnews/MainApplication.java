@@ -1,4 +1,4 @@
-package com.newsapp;
+package com.spacebar.globalnews;
 
 import android.app.Application;
 import android.content.Context;

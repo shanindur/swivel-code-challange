@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
 	chipContainer: {
 		flexDirection: 'row',
 		justifyContent: 'center',
-		paddingBottom: 10
+		marginBottom: 25
 
 	},
 	activityIndicator: {

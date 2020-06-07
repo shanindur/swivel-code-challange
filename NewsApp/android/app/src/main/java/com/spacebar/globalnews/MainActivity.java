@@ -1,4 +1,4 @@
-package com.newsapp;
+package com.spacebar.globalnews;
 
 import com.facebook.react.ReactActivity;
 

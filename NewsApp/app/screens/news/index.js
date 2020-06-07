@@ -17,12 +17,12 @@ import {
 import {useIsFocused} from '@react-navigation/native';
 import styles from './style';
 import axios from 'axios';
-import {SearchBar, Chip, Article} from '../../components';
+import {SearchBar, Chip, Article, EmptyList} from '../../components';
 import { Colors, Constants } from '../../util';
 
 const News = props => {
 	const isFocused = useIsFocused();
-	const [ fetchingData, setFetchingData ] = useState(true);
+	const [ fetchingData, setFetchingData ] = useState(false);
 	const [ data, setData ] = useState([]);
 	const [ filteredData, setFilteredData ] = useState([]);
 	const [ isSearch, setIsSearch ] = useState(false);
@@ -33,6 +33,8 @@ const News = props => {
 	const [ isAppleSelected, setIsAppleSelected ] = useState(false);
 	const [ isEarthquakeSelected, setIsEarthquakeSelected ] = useState(false);
 	const [ isAnimalSelected, setIsAnimalSelected ] = useState(false);
+	const [ isVirusSelected, setIsVirusSelected ] = useState(false);
+	const [ isSportSelected, setIsSportSelected ] = useState(false);
 
 	const onClickBitcoin = () => {
 		fetchData('bitcoin');
@@ -41,6 +43,8 @@ const News = props => {
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(false);
 		setIsAnimalSelected(false);
+		setIsVirusSelected(false);
+		setIsSportSelected(false);
 	};
 
 	const onClickApple = () => {
@@ -50,6 +54,8 @@ const News = props => {
 		setIsAppleSelected(true);
 		setIsEarthquakeSelected(false);
 		setIsAnimalSelected(false);
+		setIsVirusSelected(false);
+		setIsSportSelected(false);
 	};
 
 	const onClickEarthquake = () => {
@@ -59,6 +65,8 @@ const News = props => {
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(true);
 		setIsAnimalSelected(false);
+		setIsVirusSelected(false);
+		setIsSportSelected(false);
 	};
 
 	const onClickAnimal = () => {
@@ -68,6 +76,30 @@ const News = props => {
 		setIsAppleSelected(false);
 		setIsEarthquakeSelected(false);
 		setIsAnimalSelected(true);
+		setIsVirusSelected(false);
+		setIsSportSelected(false);
+	};
+
+	const onClickVirus = () => {
+		fetchData('virus');
+		setSelectedSource('virus');
+		setIsBitcoinSelected(false);
+		setIsAppleSelected(false);
+		setIsEarthquakeSelected(false);
+		setIsAnimalSelected(false);
+		setIsVirusSelected(true);
+		setIsSportSelected(false);
+	};
+
+	const onClickSport = () => {
+		fetchData('sport');
+		setSelectedSource('sport');
+		setIsBitcoinSelected(false);
+		setIsAppleSelected(false);
+		setIsEarthquakeSelected(false);
+		setIsAnimalSelected(false);
+		setIsVirusSelected(false);
+		setIsSportSelected(true);
 	};
 
 	const fetchData = (source) => {
@@ -117,6 +149,12 @@ const News = props => {
 			case 'animal':
 				onClickAnimal();
 				break;
+			case 'virus':
+				onClickVirus();
+				break;
+			case 'sport':
+				onClickSport();
+				break;
 			default:
 				onClickBitcoin();
 				break;
@@ -126,14 +164,22 @@ const News = props => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<Text style={styles.title}>News</Text>
-			<View style={styles.chipContainer}>
-				<Chip onPress={() => onClickBitcoin()} isBitcoinSelected={isBitcoinSelected} text={'Bitcoin'}/>
-				<Chip onPress={() => onClickApple()} isBitcoinSelected={isAppleSelected} text={'Apple'}/>
-				<Chip onPress={() => onClickEarthquake()} isBitcoinSelected={isEarthquakeSelected} text={'Earthquake'}/>
-				<Chip onPress={() => onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
-			</View>
+			<FlatList
+				horizontal = {true}
+				showsHorizontalScrollIndicator={false}
+				ListHeaderComponent = {
+					<View style={styles.chipContainer}>
+						<Chip onPress={() => onClickBitcoin()} isBitcoinSelected={isBitcoinSelected} text={'Bitcoin'}/>
+						<Chip onPress={() => onClickApple()} isBitcoinSelected={isAppleSelected} text={'Apple'}/>
+						<Chip onPress={() => onClickEarthquake()} isBitcoinSelected={isEarthquakeSelected} text={'Earthquake'}/>
+						<Chip onPress={() => onClickAnimal()} isBitcoinSelected={isAnimalSelected} text={'Animal'}/>
+						<Chip onPress={() => onClickVirus()} isBitcoinSelected={isVirusSelected} text={'Virus'}/>
+						<Chip onPress={() => onClickSport()} isBitcoinSelected={isSportSelected} text={'Sport'}/>
+					</View>
+				}
+			/>
 			<SearchBar onTextChange={text => searchNews(text)}/>
-			{(!fetchingData && data && (0 === data.length))
+			{(!fetchingData && (0 === data.length))
 				? (
 					<View style={{ alignItems: 'center', top: '38%' }}>
 						<Text>Looks like there are no articles...</Text>
@@ -142,7 +188,7 @@ const News = props => {
 				)
 				: null
 			}
-			{(fetchingData && data)
+			{(fetchingData)
 				? <ActivityIndicator color={Colors.primaryColor} size={'large'} style={styles.activityIndicator} />
 				:
 				<FlatList
